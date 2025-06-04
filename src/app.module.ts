@@ -7,6 +7,8 @@ import { join } from 'path';
 import { HelloResolver } from './hello.resolver';
 import { WeightClassesModule } from './weight-classes/weight-classes.module';
 import { FightersModule } from './fighter/fighter.module';
+import { FightsModule } from './fights/fights.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { FightersModule } from './fighter/fighter.module';
     }),
     WeightClassesModule,
     FightersModule,
+    FightsModule,
+    EventsModule,
   ],
   providers: [HelloResolver],
 })

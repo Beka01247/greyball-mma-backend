@@ -2,6 +2,30 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Event {
+  eventDate: DateTime!
+  fights: [Fight!]!
+  id: Int!
+  location: String!
+  name: String!
+}
+
+type Fight {
+  event: Event!
+  fightDate: DateTime!
+  fightResultDetails: String!
+  fighter1: Fighter!
+  fighter2: Fighter!
+  id: Int!
+  method: String!
+  winner: Fighter
+}
+
 type Fighter {
   birthDate: String!
   firstName: String!
@@ -20,13 +44,19 @@ type Fighter {
 }
 
 type Mutation {
+  createEvent(eventDate: String!, location: String!, name: String!): Event!
+  createFight(fightDate: String!, fightResultDetails: String, fighter1Id: Int!, fighter2Id: Int!, method: String!): Fight!
   createFighter(birthDate: String!, firstName: String!, height: Float!, lastName: String!, nationality: String!, weight: Float!, weightClassId: Int): Fighter!
   createWeightClass(maxWeight: Float!, minWeight: Float!, name: String!): WeightClass!
 }
 
 type Query {
+  allEvents: [Event!]!
   allFighters: [Fighter!]!
+  allFights: [Fight!]!
   allWeightClasses: [WeightClass!]!
+  eventById(id: Int!): Event!
+  fightById(id: Int!): Fight!
   fighterById(id: Int!): Fighter!
   hello: String!
   weightClassById(id: Int!): WeightClass!
