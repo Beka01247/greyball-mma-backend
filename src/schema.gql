@@ -1,0 +1,41 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Fighter {
+  birthDate: String!
+  firstName: String!
+  height: Float!
+  id: Int!
+  lastName: String!
+  nationality: String!
+  nickname: String
+  totalDraws: Int!
+  totalKnockouts: Int!
+  totalLosses: Int!
+  totalSubmissions: Int!
+  totalWins: Int!
+  weight: Float!
+  weightClass: WeightClass
+}
+
+type Mutation {
+  createFighter(birthDate: String!, firstName: String!, height: Float!, lastName: String!, nationality: String!, weight: Float!, weightClassId: Int): Fighter!
+  createWeightClass(maxWeight: Float!, minWeight: Float!, name: String!): WeightClass!
+}
+
+type Query {
+  allFighters: [Fighter!]!
+  allWeightClasses: [WeightClass!]!
+  fighterById(id: Int!): Fighter!
+  hello: String!
+  weightClassById(id: Int!): WeightClass!
+}
+
+type WeightClass {
+  fighters: [Fighter]
+  id: Int!
+  maxWeight: Float!
+  minWeight: Float!
+  name: String!
+}
