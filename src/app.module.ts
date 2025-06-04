@@ -9,6 +9,7 @@ import { WeightClassesModule } from './weight-classes/weight-classes.module';
 import { FightersModule } from './fighter/fighter.module';
 import { FightsModule } from './fights/fights.module';
 import { EventsModule } from './events/events.module';
+import { RankingsModule } from './rankings/rankings.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { EventsModule } from './events/events.module';
     FightersModule,
     FightsModule,
     EventsModule,
+    RankingsModule,
   ],
   providers: [HelloResolver],
 })

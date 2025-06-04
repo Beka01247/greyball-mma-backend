@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Fight } from './entities/fight.entity';
 import { Fighter } from '../fighter/entities/fighter.entity';
+import { RankingsService } from '../rankings/rankings.service';
 
 @Injectable()
 export class FightsService {
@@ -11,6 +12,7 @@ export class FightsService {
     private fightsRepository: Repository<Fight>,
     @InjectRepository(Fighter)
     private fighterRepository: Repository<Fighter>,
+    private rankingsService: RankingsService,
   ) {}
 
   findAll(): Promise<Fight[]> {
@@ -39,12 +41,13 @@ export class FightsService {
     method: string,
     fightResultDetails?: string,
   ): Promise<Fight> {
-    // Find fighters first
     const fighter1 = await this.fighterRepository.findOne({
       where: { id: fighter1Id },
+      relations: ['weightClass'],
     });
     const fighter2 = await this.fighterRepository.findOne({
       where: { id: fighter2Id },
+      relations: ['weightClass'],
     });
 
     if (!fighter1) {
@@ -60,8 +63,16 @@ export class FightsService {
       fightDate: new Date(fightDate),
       method,
       fightResultDetails,
+      winner: fighter1, // For this example, assuming fighter1 is always the winner
     });
 
-    return await this.fightsRepository.save(fight);
+    const savedFight = await this.fightsRepository.save(fight);
+
+    // Update rankings asynchronously
+    setImmediate(() => {
+      this.rankingsService.updateRankings(savedFight).catch(console.error);
+    });
+
+    return savedFight;
   }
 }
