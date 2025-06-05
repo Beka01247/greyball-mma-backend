@@ -18,6 +18,7 @@ export class FightsResolver {
 
   @Mutation(() => Fight)
   createFight(
+    @Args('eventId', { type: () => Int }) eventId: number,
     @Args('fighter1Id', { type: () => Int }) fighter1Id: number,
     @Args('fighter2Id', { type: () => Int }) fighter2Id: number,
     @Args('fightDate', { type: () => String }) fightDate: string,
@@ -26,6 +27,7 @@ export class FightsResolver {
     fightResultDetails?: string,
   ): Promise<Fight> {
     return this.fightsService.create(
+      eventId,
       fighter1Id,
       fighter2Id,
       fightDate,

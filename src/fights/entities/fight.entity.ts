@@ -6,8 +6,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Fighter } from 'src/fighter/entities/fighter.entity';
-import { Event } from 'src/events/entities/event.entity';
+import { Fighter } from '../../fighter/entities/fighter.entity';
+import { Event } from '../../events/entities/event.entity';
 
 @ObjectType()
 @Entity('fight')
@@ -42,7 +42,7 @@ export class Fight {
 
   @Field()
   @Column({ nullable: true })
-  method: string; // KO, Submission, Decision, etc.
+  method: string;
 
   @Field()
   @Column({ default: '' })

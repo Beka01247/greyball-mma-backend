@@ -21,7 +21,7 @@ import { RankingsModule } from './rankings/rankings.module';
       password: 'password',
       database: 'greyball_db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false, // Set to false since we're using migrations
+      synchronize: false,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

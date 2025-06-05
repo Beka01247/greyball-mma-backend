@@ -24,6 +24,11 @@ export class FightersResolver {
     @Args('birthDate') birthDate: string,
     @Args('height', { type: () => Float }) height: number,
     @Args('weight', { type: () => Float }) weight: number,
+    @Args('totalWins', { type: () => Int }) totalWins: number,
+    @Args('totalLosses', { type: () => Int }) totalLosses: number,
+    @Args('totalDraws', { type: () => Int }) totalDraws: number,
+    @Args('totalKnockouts', { type: () => Int }) totalKnockouts: number,
+    @Args('totalSubmissions', { type: () => Int }) totalSubmissions: number,
     @Args('weightClassId', { type: () => Int, nullable: true })
     weightClassId?: number,
   ): Promise<Fighter> {
@@ -34,6 +39,11 @@ export class FightersResolver {
       birthDate: new Date(birthDate),
       height,
       weight,
+      totalWins,
+      totalLosses,
+      totalDraws,
+      totalKnockouts,
+      totalSubmissions,
       weightClassId,
     });
   }

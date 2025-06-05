@@ -1,6 +1,6 @@
 import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Fighter } from 'src/fighter/entities/fighter.entity';
+import { Fighter } from '../../fighter/entities/fighter.entity';
 
 @ObjectType()
 @Entity({ name: 'weight_class' })

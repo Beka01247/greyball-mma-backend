@@ -45,8 +45,8 @@ type Fighter {
 
 type Mutation {
   createEvent(eventDate: String!, location: String!, name: String!): Event!
-  createFight(fightDate: String!, fightResultDetails: String, fighter1Id: Int!, fighter2Id: Int!, method: String!): Fight!
-  createFighter(birthDate: String!, firstName: String!, height: Float!, lastName: String!, nationality: String!, weight: Float!, weightClassId: Int): Fighter!
+  createFight(eventId: Int!, fightDate: String!, fightResultDetails: String, fighter1Id: Int!, fighter2Id: Int!, method: String!): Fight!
+  createFighter(birthDate: String!, firstName: String!, height: Float!, lastName: String!, nationality: String!, totalDraws: Int!, totalKnockouts: Int!, totalLosses: Int!, totalSubmissions: Int!, totalWins: Int!, weight: Float!, weightClassId: Int): Fighter!
   createWeightClass(maxWeight: Float!, minWeight: Float!, name: String!): WeightClass!
 }
 
@@ -54,12 +54,24 @@ type Query {
   allEvents: [Event!]!
   allFighters: [Fighter!]!
   allFights: [Fight!]!
+  allRankings: [Ranking!]!
   allWeightClasses: [WeightClass!]!
   eventById(id: Int!): Event!
   fightById(id: Int!): Fight!
   fighterById(id: Int!): Fighter!
   hello: String!
   weightClassById(id: Int!): WeightClass!
+}
+
+type Ranking {
+  consecutiveLosses: Int!
+  consecutiveWins: Int!
+  fighter: Fighter!
+  id: Int!
+  isFormerChampion: Boolean!
+  lastFightDate: DateTime!
+  points: Float!
+  weightClass: WeightClass!
 }
 
 type WeightClass {
